@@ -31,7 +31,7 @@ export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
             height: "57vh",
             gridGap: "1rem",
             borderRadius: "1rem",
-            width: "25vw",
+            width: "auto",
           }}
         >
           <div

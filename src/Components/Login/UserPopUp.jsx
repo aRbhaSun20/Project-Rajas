@@ -35,7 +35,7 @@ export default function UserPopUp({ openPopUp, setOpenPopUp }) {
             height: "60vh",
             gridGap: "1rem",
             borderRadius: "1rem",
-            width: "35vw",
+            width: "auto",
           }}
         >
           <div
