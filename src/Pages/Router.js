@@ -9,7 +9,7 @@ export default function Router() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/doctordashboard" element={<DoctorDashboard/>}/>
+          <Route path="doctordashboard" element={<DoctorDashboard/>}/>
         </Routes>
       </BrowserRouter>
     </React.Fragment>

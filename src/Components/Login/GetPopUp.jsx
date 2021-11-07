@@ -9,7 +9,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -36,6 +35,7 @@ export default function GetPopUp({ openPopUp, setOpenPopUp }) {
             justifyContent: "space-evenly",
             alignItems: "center",
             flexDirection: "column",
+            padding: "2rem 5rem",
           }}
         >
           <Typography style={{ fontSize: 19.2 }}>WHO ARE YOU ?</Typography>

@@ -52,7 +52,8 @@ export default function Home() {
                   alignItems: "flex-start",
                   width: "75%",
                   margin: "auto",
-                  height: "75%",
+                  height: "auto",
+                  rowGap: "2rem",
                 }}
               >
                 <Typography style={{ fontSize: 30, fontWeight: "bold" }}>
@@ -82,7 +83,8 @@ export default function Home() {
                   alignItems: "flex-start",
                   width: "50%",
                   margin: "auto",
-                  height: "75%",
+                  height: "auto",
+                  rowGap: "2rem",
                 }}
               >
                 <Typography style={{ fontSize: 30, fontWeight: "bold" }}>
