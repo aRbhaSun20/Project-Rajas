@@ -1,7 +1,12 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import GetPopUp from "../Login/GetPopUp";
+import LoginPopUp from "../Login/LoginPopUp";
 
 export default function Navbar() {
+  const [openLogin, setOpenLogin] = useState(false);
+  const [getPopUp, setgetPopUp] = useState(false);
+
   return (
     <React.Fragment>
       <div
@@ -19,14 +24,10 @@ export default function Navbar() {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "flex-start",
             }}
           >
-            <Typography
-              variant="h4"
-              style={{ fontSize: "2.5rem" }}
-              align="center"
-            >
+            <Typography variant="h4" style={{ fontSize: 40 }} align="center">
               RAJAS
             </Typography>
           </div>
@@ -45,21 +46,39 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            columnGap: 32,
           }}
         >
           <Button
             variant="contained"
             style={{
               backgroundColor: "blue",
-              height: "3.5rem",
+              height: 54,
               width: "13rem",
-              borderRadius: ".5rem",
+              borderRadius: 8,
+              fontWeight: "bold",
             }}
+            onClick={() => setOpenLogin(true)}
           >
-            Get Started
+            Login
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "blue",
+              height: 54,
+              width: "13rem",
+              borderRadius: 8,
+              fontWeight: "bold",
+            }}
+            onClick={() => setgetPopUp(true)}
+          >
+            Getting Started
           </Button>
         </div>
       </div>
+      <LoginPopUp openPopUp={openLogin} setOpenPopUp={setOpenLogin} />
+      <GetPopUp openPopUp={getPopUp} setOpenPopUp={setgetPopUp} />
     </React.Fragment>
   );
 }
