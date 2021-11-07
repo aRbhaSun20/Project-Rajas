@@ -32,7 +32,7 @@ export default function GetPopUp({ openPopUp, setOpenPopUp }) {
             display: "flex",
             height: "35vh",
             borderRadius: "1rem",
-            width: "20vw",
+            width: "auto",
             justifyContent: "space-evenly",
             alignItems: "center",
             flexDirection: "column",

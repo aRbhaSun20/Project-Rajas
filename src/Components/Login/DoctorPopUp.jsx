@@ -35,7 +35,7 @@ export default function DoctorPopUp({ openPopUp, setOpenPopUp }) {
             height: "75vh",
             gridGap: "1rem",
             borderRadius: "1rem",
-            width: "35vw",
+            width: "auto",
           }}
         >
           <div
@@ -145,7 +145,7 @@ export default function DoctorPopUp({ openPopUp, setOpenPopUp }) {
                   fontWeight: "bold",
                 }}
               >
-                Upload Document
+                Upload Resume
               </Button>
               <Button
                 variant="contained"
