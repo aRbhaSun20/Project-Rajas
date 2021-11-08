@@ -20,8 +20,8 @@ export default function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateRows: "1fr 2fr",
-              height: "60%",
+              gridTemplateRows: "1fr .5fr 1.8fr",
+              height: "65%",
               margin: "auto",
               width: "100%",
             }}
@@ -39,8 +39,28 @@ export default function Home() {
               <Typography
                 style={{ fontSize: 44, color: "gray", letterSpacing: 3 }}
               >
-                Meet the best doctors online{" "}
-                <span style={{ color: "black" }}>fast and effective</span>
+                Meet the best doctors online
+                <span style={{ color: "black" }}>
+                  {" "}
+                  fast and effective with video call
+                </span>
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                width: "90%",
+                textAlign: "start",
+                margin: "auto",
+              }}
+            >
+              <Typography
+                style={{ width: "60%", fontSize: "1.2rem", color: "#383838" }}
+              >
+                Talk to our experienced doctors, get scheduled virtual
+                consultations and e-prescriptions.
               </Typography>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
