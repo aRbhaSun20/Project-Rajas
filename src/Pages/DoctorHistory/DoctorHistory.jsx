@@ -1,10 +1,9 @@
 import * as React from "react";
 import NavbarAfter from "../../Components/Navbar/NavbarAfter";
-import LeftBar from "./LeftBar";
+import LeftBar from "../DoctorDashboard/LeftBar";
 import PatientDetails from "./PatientDetails";
-import PharmacyDetails from "./PharmacyDetails";
 
-export default function DoctorDashboard() {
+export default function DoctorHistory() {
   return (
     <React.Fragment>
       <div style={{ display: "grid", gridTemplateColumns: "auto 1fr" }}>
@@ -21,7 +20,7 @@ export default function DoctorDashboard() {
           <NavbarAfter />
           <PatientDetails />
           <br />
-          <PharmacyDetails />
+          <PatientDetails />
         </div>
       </div>
     </React.Fragment>
