@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ScrollableFeed from 'react-scrollable-feed'
 import IconButton from "@mui/material/IconButton";
 import "./styles.css";
 import {
@@ -117,10 +118,10 @@ export default function ChatDetails() {
               </IconButton>
             </div>
           </div>
-          <div  style={{overflowY:'scroll',height:'42rem'}} >
-
+          {/* <div  style={{overflowY:'scroll',height:'42rem'}} > */}
+              <div style={{height:'42rem'}}>
              {/* /*doctor division */}
-          
+          <ScrollableFeed>
              <div style={{ width: "100%" }}>
               <div class="container" style={{ textAlign: "left" }}>
                 <h1 style={{ color: "white", fontSize: "0.8rem" }}> user </h1>
@@ -141,7 +142,7 @@ export default function ChatDetails() {
             })}
           
             
-           
+          </ScrollableFeed>
 
 
 
