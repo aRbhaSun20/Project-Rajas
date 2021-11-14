@@ -1,7 +1,9 @@
 import { Button, Modal, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import PeopleLogo from "../../assets/people-logo.png";
+import { NAV_ACTIONS } from "../../Context/NavigationReducers";
 
 const style = {
   position: "absolute",
@@ -14,13 +16,20 @@ const style = {
   p: 4,
 };
 
-export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
+export default function LoginPopUp() {
   const history = useNavigate();
+  const openPopUp = useSelector((state) => state.navigation);
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <Modal
-        open={openPopUp.status}
-        onClose={() => setOpenPopUp(false)}
+        open={openPopUp.loginPopUp}
+        onClose={() =>
+          dispatch({
+            type: NAV_ACTIONS.NAV_CHANGE,
+            payload: { loginPopUp: false, loginType: "" },
+          })
+        }
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -46,7 +55,7 @@ export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
           >
             <img src={PeopleLogo} style={{ width: "7rem" }} alt="people-log" />
             <Typography style={{ fontSize: 24, textTransform: "uppercase" }}>
-              welcome to rajas as {openPopUp.type}
+              welcome to rajas as {openPopUp.loginType}
             </Typography>
           </div>
           <div
@@ -88,7 +97,17 @@ export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
                 fontWeight: "bold",
               }}
               onClick={() => {
-                history("doctordashboard");
+                history(
+                  `${
+                    openPopUp.loginType === "patient"
+                      ? "patientdashboard"
+                      : "doctordashboard"
+                  }`
+                );
+                dispatch({
+                  type: NAV_ACTIONS.NAV_CHANGE,
+                  payload: { loginPopUp: false, loginStatus: true },
+                });
               }}
             >
               Login

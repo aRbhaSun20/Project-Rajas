@@ -94,10 +94,7 @@ export default function LeftBar() {
           />
         </Badge>
       ),
-      link:
-        currentNav.loginType === "patient"
-          ? "/patientdashboard"
-          : "/doctordashboard",
+      link: "/doctordashboard",
     },
     {
       title: "Requests",
@@ -114,10 +111,7 @@ export default function LeftBar() {
           />
         </Badge>
       ),
-      link:
-        currentNav.loginType === "patient"
-          ? "/patientrequest"
-          : "/doctorrequest",
+      link: "/doctorrequest",
     },
     {
       title: "Chat",
@@ -133,7 +127,7 @@ export default function LeftBar() {
           />
         </Badge>
       ),
-      link: currentNav.loginType === "patient" ? "/patientchat" : "/doctorchat",
+      link: "/doctorchat",
     },
     {
       title: "History",
@@ -147,10 +141,7 @@ export default function LeftBar() {
           }}
         />
       ),
-      link:
-        currentNav.loginType === "patient"
-          ? "/patienthistory"
-          : "/doctorhistory",
+      link: "/doctorhistory",
     },
     {
       title: "Pharmacy Near me",
@@ -160,12 +151,11 @@ export default function LeftBar() {
             padding: ".5rem 0",
             width: "2rem",
             color: currentNav.current === "Pharmacy Near me" && "blue",
-            borderBottom:
-              currentNav.current === "Pharmacy Near me" && "1px solid blue",
+            borderBottom: currentNav.current === "Pharmacy Near me" && "1px solid blue",
           }}
         />
       ),
-      link: "/pharmacyMap",
+      link: "/",
     },
     {
       title: "Logout",
@@ -225,17 +215,10 @@ export default function LeftBar() {
               }}
               onClick={(e) => {
                 navigate(text.link);
-
-                if (text.title === "Logout") {
-                  dispatch({
-                    type: NAV_ACTIONS.LOGOUT,
-                  });
-                } else {
-                  dispatch({
-                    type: NAV_ACTIONS.NAV_CHANGE,
-                    payload: { current: text.title },
-                  });
-                }
+                dispatch({
+                  type: NAV_ACTIONS.NAV_CHANGE,
+                  payload: { current: text.title },
+                });
               }}
             >
               <ListItem

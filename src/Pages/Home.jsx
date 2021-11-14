@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../Components/Navbar/Navbar.jsx";
 import homeSvg from "../assets/home-png.png";
 import { Button, Typography } from "@mui/material";
 import LoginPopUp from "../Components/Login/LoginPopUp.jsx";
+import { useDispatch } from "react-redux";
+import { NAV_ACTIONS } from "../Context/NavigationReducers.js";
 
 export default function Home() {
-
-  const [openLogin, setOpenLogin] = useState({
-    status: false,
-    type: "",
-  });
+  const dispatch = useDispatch();
 
   return (
     <React.Fragment>
@@ -97,7 +95,13 @@ export default function Home() {
                     fontWeight: "bold",
                     borderRadius: 8,
                     backgroundColor: "blue",
-                  }}   onClick={() => setOpenLogin({status:true,type:"patient"})}
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: NAV_ACTIONS.NAV_CHANGE,
+                      payload: { loginPopUp: true, loginType: "patient" },
+                    })
+                  }
                 >
                   Login as Patient
                 </Button>
@@ -129,7 +133,12 @@ export default function Home() {
                     borderRadius: 8,
                     backgroundColor: "blue",
                   }}
-                  onClick={() => setOpenLogin({status:true,type:"doctor"})}
+                  onClick={() =>
+                    dispatch({
+                      type: NAV_ACTIONS.NAV_CHANGE,
+                      payload: { loginPopUp: true, loginType: "doctor" },
+                    })
+                  }
                 >
                   Login as Doctor
                 </Button>
@@ -149,7 +158,7 @@ export default function Home() {
         </div>
       </div>
 
-      <LoginPopUp openPopUp={openLogin} setOpenPopUp={setOpenLogin} />
+      <LoginPopUp />
     </React.Fragment>
   );
 }

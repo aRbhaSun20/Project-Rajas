@@ -3,11 +3,25 @@ export const NAV_ACTIONS = {
   LOGOUT: "logout",
 };
 
-export const NavigationReducers = (InitialState = { current: "" }, actions) => {
+export const NavigationReducers = (
+  InitialState = {
+    current: "Dashboard",
+    loginStatus: false,
+    loginType: "",
+    loginPopUp: false,
+  },
+  actions
+) => {
   switch (actions.type) {
     case NAV_ACTIONS.NAV_CHANGE:
-      return { ...actions.payload };
-
+      return { ...InitialState, ...actions.payload };
+    case NAV_ACTIONS.LOGOUT:
+      return {
+        current: "Dashboard",
+        loginStatus: false,
+        loginType: "",
+        loginPopUp: false,
+      };
     default:
       return InitialState;
   }
