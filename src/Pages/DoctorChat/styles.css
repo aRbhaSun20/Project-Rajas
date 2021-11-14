@@ -1,0 +1,41 @@
+/* Chat containers */
+.container {
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 10px 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 3rem;
+    margin-right: 45rem;
+    
+  }
+  
+  /* Darker chat container */
+  .darker {
+    background-color: white;
+    color: black;
+    margin-left: 45rem;
+    margin-right: 3rem;
+  }
+  
+  /* Clear floats */
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
+import "./styles.css";
 import {
   AttachFile,
   KeyboardVoice,
@@ -107,7 +108,20 @@ export default function ChatDetails() {
               </IconButton>
             </div>
           </div>
-          <div></div>
+          <div>
+          <div class="container darker" style={{textAlign:'right'}}>
+              <h1 style={{color:'black',fontSize:'0.8rem'}}> doctor </h1>
+              <p>Hello. How are you today?</p>
+              <span class="time-left">11:01</span>
+            </div>
+            <div style={{width:'100%'}}>
+            <div class="container" style={{textAlign:'left'}}>
+              <h1 style={{color:'white',fontSize:'0.8rem'}}> user </h1>
+              <p>Hey! I'm fine. Thanks for asking!</p>
+              <span class="time-right">11:00</span>
+            </div>
+            </div>
+          </div>
           <div
             style={{
               background: "#f5f5f5",
