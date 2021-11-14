@@ -18,7 +18,6 @@ import {
   TextField,
 } from "@mui/material";
 import ChatBox from "./ChatBox";
-import { map } from "leaflet";
 
 export default function ChatDetails() {
 
