@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -14,12 +14,12 @@ import {
   People,
   RequestPage,
 } from "@mui/icons-material";
-import {
-  Divider,
-  Tooltip,
-} from "@mui/material";
+import { Badge, Divider, Tooltip } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { NAV_ACTIONS } from "../../Context/NavigationReducers";
 
 const drawerWidth = 240;
 
@@ -56,94 +56,174 @@ const closedMixin = (theme) => ({
 });
 
 const Drawer = styled(MuiDrawer, {
-    shouldForwardProp: (prop) => prop !== "open",
-  })(({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    ...(open && {
-      ...openedMixin(theme),
-      "& .MuiDrawer-paper": openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      "& .MuiDrawer-paper": closedMixin(theme),
-    }),
-  }));
-  
-  const NavBar = [
-    { title: "Dashboard", icon: <CalendarToday />, link: "/doctordashboard" },
-    { title: "Requests", icon: <RequestPage />, link: "/doctordashboard" },
-    { title: "Chat", icon: <Chat />, link: "/doctordashboard" },
-    { title: "History", icon: <History />, link: "/doctorhistory" },
-    {title:"Logout",icon:<People/>,link:"/"}
-  ];
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 export default function LeftBar() {
-    const [open, setOpen] = React.useState(false);
-    const navigate = useNavigate();
-    return (
-        <React.Fragment>
-             <Drawer
-          variant="permanent"
-          open={open}
-          PaperProps={{
-            style: { position: "relative" },
+  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const currentNav = useSelector((state) => state.navigation);
+
+  const NavBar = [
+    {
+      title: "Dashboard",
+      icon: (
+        <Badge color="primary" badgeContent={10} max={35}>
+          <CalendarToday
+            style={{
+              padding: ".5rem 0",
+              width: "2rem",
+              color: currentNav.current === "Dashboard" && "blue",
+              borderBottom:
+                currentNav.current === "Dashboard" && "1px solid blue",
+            }}
+          />
+        </Badge>
+      ),
+      link: "/doctordashboard",
+    },
+    {
+      title: "Requests",
+      icon: (
+        <Badge color="primary" badgeContent={50} max={35}>
+          <RequestPage
+            style={{
+              padding: ".5rem 0",
+              width: "2rem",
+              color: currentNav.current === "Requests" && "blue",
+              borderBottom:
+                currentNav.current === "Requests" && "1px solid blue",
+            }}
+          />
+        </Badge>
+      ),
+      link: "/doctorrequest",
+    },
+    {
+      title: "Chat",
+      icon: (
+        <Badge color="primary" badgeContent={30} max={25}>
+          <Chat
+            style={{
+              padding: ".5rem 0",
+              width: "2rem",
+              color: currentNav.current === "Chat" && "blue",
+              borderBottom: currentNav.current === "Chat" && "1px solid blue",
+            }}
+          />
+        </Badge>
+      ),
+      link: "/doctorchat",
+    },
+    {
+      title: "History",
+      icon: (
+        <History
+          style={{
+            padding: ".5rem 0",
+            width: "2rem",
+            color: currentNav.current === "History" && "blue",
+            borderBottom: currentNav.current === "History" && "1px solid blue",
+          }}
+        />
+      ),
+      link: "/doctorhistory",
+    },
+    {
+      title: "Logout",
+      icon: (
+        <People
+          style={{
+            padding: ".5rem 0",
+            width: "2rem",
+            color: currentNav.current === "Logout" && "blue",
+            borderBottom: currentNav.current === "Logout" && "1px solid blue",
+          }}
+        />
+      ),
+      link: "/",
+    },
+  ];
+
+  const dispatch = useDispatch();
+  return (
+    <React.Fragment>
+      <Drawer
+        variant="permanent"
+        open={open}
+        PaperProps={{
+          style: { position: "fixed" },
+        }}
+      >
+        <DrawerHeader
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "75%",
+            margin: "0 auto",
           }}
         >
-          <DrawerHeader
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              width: "75%",
-              margin: "0 auto",
-            }}
-          >
-            <IconButton onClick={() => setOpen((state) => !state)}>
-              {!open ? (
-                <Menu style={{ color: "blue", fontSize: 35 }} />
-              ) : (
-                <React.Fragment>
-                  <Close style={{ color: "blue", fontSize: 35 }} />
-                </React.Fragment>
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <Divider />
-          <List style={{ display: "grid", gridGap: "1rem" }}>
-            {NavBar.map((text, index) => (
+          <IconButton onClick={() => setOpen((state) => !state)}>
+            {!open ? (
+              <Menu style={{ color: "blue", fontSize: 35 }} />
+            ) : (
+              <React.Fragment>
+                <Close style={{ color: "blue", fontSize: 35 }} />
+              </React.Fragment>
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List style={{ display: "grid", gridGap: "1rem" }}>
+          {NavBar.map((text, index) => (
+            <ListItem
+              button
+              key={index}
+              style={{
+                padding: 0,
+                display: "grid",
+                gridTemplateColumns: open ? "1fr 1fr" : "1fr",
+              }}
+              onClick={(e) => {
+                navigate(text.link);
+                dispatch({
+                  type: NAV_ACTIONS.NAV_CHANGE,
+                  payload: { current: text.title },
+                });
+              }}
+            >
               <ListItem
-                button
-                key={index}
                 style={{
-                  padding: 0,
-                  display: "grid",
-                  gridTemplateColumns: open ? "1fr 1fr" : "1fr",
-                }}
-                onClick={(e) => {
-                  navigate(text.link);
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                <ListItem
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {!open ? (
-                    <Tooltip title={text.title}>{text.icon}</Tooltip>
-                  ) : (
-                    text.icon
-                  )}
-                </ListItem>
-                {open && <ListItemText primary={text.title} />}
+                {!open ? (
+                  <Tooltip title={text.title}>{text.icon}</Tooltip>
+                ) : (
+                  text.icon
+                )}
               </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        </React.Fragment>
-    )
+              {open && <ListItemText primary={text.title} />}
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </React.Fragment>
+  );
 }

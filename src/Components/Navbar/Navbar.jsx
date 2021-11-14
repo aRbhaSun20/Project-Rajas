@@ -1,10 +1,9 @@
 import { Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import GetPopUp from "../Login/GetPopUp";
-import LoginPopUp from "../Login/LoginPopUp";
 
 export default function Navbar() {
-  const [openLogin, setOpenLogin] = useState(false);
+
   const [getPopUp, setgetPopUp] = useState(false);
 
   return (
@@ -58,26 +57,12 @@ export default function Navbar() {
               borderRadius: 8,
               fontWeight: "bold",
             }}
-            onClick={() => setOpenLogin(true)}
-          >
-            Login
-          </Button>
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: "blue",
-              height: 54,
-              width: "13rem",
-              borderRadius: 8,
-              fontWeight: "bold",
-            }}
             onClick={() => setgetPopUp(true)}
           >
             Getting Started
           </Button>
         </div>
       </div>
-      <LoginPopUp openPopUp={openLogin} setOpenPopUp={setOpenLogin} />
       <GetPopUp openPopUp={getPopUp} setOpenPopUp={setgetPopUp} />
     </React.Fragment>
   );

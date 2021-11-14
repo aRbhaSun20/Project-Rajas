@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar/Navbar.jsx";
 import homeSvg from "../assets/home-png.png";
 import { Button, Typography } from "@mui/material";
+import LoginPopUp from "../Components/Login/LoginPopUp.jsx";
 
 export default function Home() {
+
+  const [openLogin, setOpenLogin] = useState({
+    status: false,
+    type: "",
+  });
+
   return (
     <React.Fragment>
       <div
@@ -77,7 +84,7 @@ export default function Home() {
                 }}
               >
                 <Typography style={{ fontSize: 30, fontWeight: "bold" }}>
-                  For Users
+                  For Patients
                 </Typography>
                 <Typography style={{ fontSize: 18 }}>
                   Users can login here
@@ -90,9 +97,9 @@ export default function Home() {
                     fontWeight: "bold",
                     borderRadius: 8,
                     backgroundColor: "blue",
-                  }}
+                  }}   onClick={() => setOpenLogin({status:true,type:"patient"})}
                 >
-                  Make an appointment
+                  Login as Patient
                 </Button>
               </div>
               <div
@@ -122,8 +129,9 @@ export default function Home() {
                     borderRadius: 8,
                     backgroundColor: "blue",
                   }}
+                  onClick={() => setOpenLogin({status:true,type:"doctor"})}
                 >
-                  View appointments
+                  Login as Doctor
                 </Button>
               </div>
             </div>
@@ -140,6 +148,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <LoginPopUp openPopUp={openLogin} setOpenPopUp={setOpenLogin} />
     </React.Fragment>
   );
 }

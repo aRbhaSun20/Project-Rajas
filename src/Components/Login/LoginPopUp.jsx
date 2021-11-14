@@ -19,7 +19,7 @@ export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
   return (
     <React.Fragment>
       <Modal
-        open={openPopUp}
+        open={openPopUp.status}
         onClose={() => setOpenPopUp(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -45,7 +45,9 @@ export default function LoginPopUp({ openPopUp, setOpenPopUp }) {
             }}
           >
             <img src={PeopleLogo} style={{ width: "7rem" }} alt="people-log" />
-            <Typography style={{ fontSize: 24 }}>WELCOME TO RAJAS</Typography>
+            <Typography style={{ fontSize: 24, textTransform: "uppercase" }}>
+              welcome to rajas as {openPopUp.type}
+            </Typography>
           </div>
           <div
             style={{
