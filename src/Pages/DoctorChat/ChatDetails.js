@@ -17,9 +17,18 @@ import {
   TextField,
 } from "@mui/material";
 import ChatBox from "./ChatBox";
+import { map } from "leaflet";
 
 export default function ChatDetails() {
+
   const [message, setMessage] = useState("");
+  const [allmessages, setAllmessages] = useState([]);
+  function handleSubmit(e){
+    setAllmessages((val)=>[...val,{message : message,time:new Date().getHours() + ":" + new Date().getMinutes()}])
+    setMessage("")
+  }
+
+
   return (
     <React.Fragment>
       <Paper
@@ -108,19 +117,37 @@ export default function ChatDetails() {
               </IconButton>
             </div>
           </div>
-          <div>
-          <div class="container darker" style={{textAlign:'right'}}>
-              <h1 style={{color:'black',fontSize:'0.8rem'}}> doctor </h1>
-              <p>Hello. How are you today?</p>
-              <span class="time-left">11:01</span>
+          <div  style={{overflowY:'scroll',height:'42rem'}} >
+
+             {/* /*doctor division */}
+          
+             <div style={{ width: "100%" }}>
+              <div class="container" style={{ textAlign: "left" }}>
+                <h1 style={{ color: "white", fontSize: "0.8rem" }}> user </h1>
+                <p>Hey! I'm fine. Thanks for asking!</p>
+                <span class="time-right">11:00</span>
+              </div>
             </div>
-            <div style={{width:'100%'}}>
-            <div class="container" style={{textAlign:'left'}}>
-              <h1 style={{color:'white',fontSize:'0.8rem'}}> user </h1>
-              <p>Hey! I'm fine. Thanks for asking!</p>
-              <span class="time-right">11:00</span>
-            </div>
-            </div>
+
+            {/* /*user division */ }
+
+            {allmessages.map((val)=>{
+
+              return (  <div class="container darker" style={{ textAlign: "right" }}>
+              <h1 style={{ color: "black", fontSize: "0.8rem" }}> doctor </h1>
+              <p>{val.message}</p>
+              <span class="time-left">{val.time}</span>
+            </div>)
+            })}
+          
+            
+           
+
+
+
+
+
+
           </div>
           <div
             style={{
@@ -155,7 +182,7 @@ export default function ChatDetails() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <IconButton>
+            <IconButton onClick={handleSubmit}>
               {message === "" ? <KeyboardVoice /> : <Send />}
             </IconButton>{" "}
           </div>
